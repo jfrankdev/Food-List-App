@@ -5,13 +5,13 @@ var HTTP = require('../services/httpservice');
 var List = React.createClass({
 
     getInitialState: function() {
-      console.log('file is working');
 
       return {ingredients: []};
     },
-    componentWillMount: function() { 
+    componentWillMount: function() {
       HTTP.get('/ingredients')
       .then(function(data){
+        console.log('http get is working');
         this.setState({ingredients: data});
       }.bind(this));
     },

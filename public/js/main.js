@@ -19564,31 +19564,31 @@ var ListItem = require('./ListItem.jsx');
 var HTTP = require('../services/httpservice');
 
 var List = React.createClass({
-  displayName: 'List',
+    displayName: 'List',
 
 
-  getInitialState: function () {
-    console.log('file is working');
+    getInitialState: function () {
 
-    return { ingredients: [] };
-  },
-  componentWillMount: function () {
-    HTTP.get('/ingredients').then(function (data) {
-      this.setState({ ingredients: data });
-    }.bind(this));
-  },
-  render: function () {
+        return { ingredients: [] };
+    },
+    componentWillMount: function () {
+        HTTP.get('/ingredients').then(function (data) {
+            console.log('http get is working');
+            this.setState({ ingredients: data });
+        }.bind(this));
+    },
+    render: function () {
 
-    var listItems = this.state.ingredients.map(function (item) {
-      return React.createElement(ListItem, { key: item.id, ingredient: item.text });
-    });
+        var listItems = this.state.ingredients.map(function (item) {
+            return React.createElement(ListItem, { key: item.id, ingredient: item.text });
+        });
 
-    return React.createElement(
-      'ul',
-      null,
-      listItems
-    );
-  }
+        return React.createElement(
+            'ul',
+            null,
+            listItems
+        );
+    }
 });
 
 module.exports = List;
@@ -19625,7 +19625,7 @@ ReactDOM.render(React.createElement(List, null), document.getElementById('ingred
 
 },{"./components/List.jsx":160,"react":158,"react-dom":2}],163:[function(require,module,exports){
 var Fetch = require('whatwg-fetch');
-var baseUrl = 'http://localhost:6060';
+var baseUrl = 'http://localhost:3000';
 
 var service = {
   get: function (url) {
