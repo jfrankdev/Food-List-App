@@ -19,22 +19,17 @@ var List = React.createClass({
       this.setState({newText: e.target.value});
     },
     onClick: function(e) {
-      if (this.state.newText) {
-        Actions.postIngredient(this.state.newText);
-      }
-      this.setState({newText: ""});
+      var num = 0;
+      Actions.postIngredient(num);
     },
     render: function() {
 
         var listItems = this.state.ingredients.map(function(item) {
-            return <ListItem key={item.id} ingredient={item.text} />;
+            return <ListItem key={item.id} ingredient={item.vote} />;
         });
 
         return  (
           <div>
-          <input placeholder="add item"
-          value={this.state.newText}
-          onChange={this.onInputChange} />
           <button onClick={this.onClick}>Add Item</button>
           <ul>{listItems}</ul>
           </div>

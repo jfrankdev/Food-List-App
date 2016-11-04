@@ -11,15 +11,16 @@ var IngredientStore = Reflux.createStore({
         this.fireUpdate();
       }.bind(this));
     },
-    postIngredient: function(text) {
+    postIngredient: function(num) {
 
       if (!this.ingredients) {
         this.ingredients = [];
       }
 
       var ingredient = {
-        "text": text,
-        "id": Math.floor(Date.now() / 1000) + text
+        "id": Math.random(Date.now() / 1000) + num,
+        "vote": num
+
       };
 
       this.ingredients.push(ingredient);

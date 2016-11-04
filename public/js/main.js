@@ -20930,23 +20930,18 @@ var List = React.createClass({
     this.setState({ newText: e.target.value });
   },
   onClick: function (e) {
-    if (this.state.newText) {
-      Actions.postIngredient(this.state.newText);
-    }
-    this.setState({ newText: "" });
+    var num = 0;
+    Actions.postIngredient(num);
   },
   render: function () {
 
     var listItems = this.state.ingredients.map(function (item) {
-      return React.createElement(ListItem, { key: item.id, ingredient: item.text });
+      return React.createElement(ListItem, { key: item.id, ingredient: item.vote });
     });
 
     return React.createElement(
       'div',
       null,
-      React.createElement('input', { placeholder: 'add item',
-        value: this.state.newText,
-        onChange: this.onInputChange }),
       React.createElement(
         'button',
         { onClick: this.onClick },
@@ -21013,15 +21008,16 @@ var IngredientStore = Reflux.createStore({
       this.fireUpdate();
     }.bind(this));
   },
-  postIngredient: function (text) {
+  postIngredient: function (num) {
 
     if (!this.ingredients) {
       this.ingredients = [];
     }
 
     var ingredient = {
-      "text": text,
-      "id": Math.floor(Date.now() / 1000) + text
+      "id": Math.random(Date.now() / 1000) + num,
+      "vote": num
+
     };
 
     this.ingredients.push(ingredient);
